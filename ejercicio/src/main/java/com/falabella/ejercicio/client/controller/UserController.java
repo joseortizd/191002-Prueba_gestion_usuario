@@ -9,6 +9,7 @@ import com.falabella.ejercicio.business.service.UserService;
 import com.falabella.ejercicio.client.dto.ApiResponseDTO;
 import com.falabella.ejercicio.client.dto.UserDTO;
 import com.falabella.ejercicio.client.exception.UserException;
+import io.micrometer.core.lang.Nullable;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import java.util.logging.Level;
@@ -33,14 +34,14 @@ public class UserController {
     private UserService userService;
     
         @ApiResponses(value = {
-        @ApiResponse(code = 200, message = "successful operation", response = ApiResponseDTO.class),
-        @ApiResponse(code = 404, message = "Data is not complete")})
+        @ApiResponse(code = 201, message = "Created ", response = ApiResponseDTO.class),
+        @ApiResponse(code = 400, message = "Bad Request")})
         @RequestMapping(value = "/users", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
         @ResponseBody
-        ResponseEntity<ApiResponseDTO> create(@RequestBody UserDTO usuarioDTO) {
+        ResponseEntity<ApiResponseDTO> create(@Nullable @RequestBody UserDTO userDTO) {
             ApiResponseDTO apiResponseDTO = new ApiResponseDTO();
             try {
-                this.userService.create(usuarioDTO);
+                this.userService.create(userDTO);
                 apiResponseDTO.setMessage("Created");
                 return new ResponseEntity<>(apiResponseDTO, HttpStatus.CREATED);
             } catch (UserException ex) {

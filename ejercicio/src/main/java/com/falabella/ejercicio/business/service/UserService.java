@@ -11,11 +11,13 @@ import com.falabella.ejercicio.client.exception.UserException;
 import com.falabella.ejercicio.data.entity.UserEntity;
 import com.falabella.ejercicio.data.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 /**
  *
  * @author joseortiz
  */
+@Service
 public class UserService {
     @Autowired
     private UserRepository userRepository;
