@@ -29,10 +29,14 @@ public class UserService {
         if (userDTO.getAddress() == null || userDTO.getDocument() == null || 
             userDTO.getEmail() == null || userDTO.getLastName() == null || 
             userDTO.getName() == null || userDTO.getPhoneNumber() == null) {
-            throw new UserException("userDTO needs all fields");
+            throw new UserException("Bad Request");
         }
         UserEntity userEntity = ConverterUser.userDtoToEntity(userDTO);
-        this.userRepository.save(userEntity);
+        try {
+            this.userRepository.save(userEntity);
+        } catch (Exception ex){
+            throw  new UserException("Bad Request");
+        }
         return userDTO; 
     }
 }

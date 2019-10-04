@@ -24,6 +24,8 @@ public class ConverterUser {
         userEntity.setName(userDTO.getName());
         userEntity.setCreatedAt(new Date());
         userEntity.setUpdatedAT(new Date());
+        userEntity.setPhoneNumber(userDTO.getPhoneNumber());
+        userEntity.setStatus(true);
         return userEntity;
     }
 }
