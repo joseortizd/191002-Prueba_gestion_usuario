@@ -8,5 +8,8 @@
  - Para cambiar la configuración editar los archivos **application.properties** en las rutas:
 
 > /191002-Prueba_gestion_usuario/ejercicio/src/main/resources
+
+y
+
 > /191002-Prueba_gestion_usuario/ejercicio/src/test/resources
 
