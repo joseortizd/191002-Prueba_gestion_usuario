@@ -28,6 +28,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @author joseortiz
  */
 @RestController
+@RequestMapping(value = "/v1/users")
 public class UserController {
     
     @Autowired
@@ -36,7 +37,7 @@ public class UserController {
         @ApiResponses(value = {
         @ApiResponse(code = 201, message = "Created ", response = ApiResponseDTO.class),
         @ApiResponse(code = 400, message = "Bad Request")})
-        @RequestMapping(value = "/users", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+        @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
         @ResponseBody
         ResponseEntity<ApiResponseDTO> create(@Nullable @RequestBody UserDTO userDTO) {
             ApiResponseDTO apiResponseDTO = new ApiResponseDTO();
