@@ -22,24 +22,26 @@ import org.springframework.integration.annotation.ServiceActivator;
 import org.springframework.integration.channel.DirectChannel;
 import org.springframework.messaging.MessageChannel;
 import org.springframework.messaging.MessageHandler;
-
+								//Uncomment below code to populate database (1)
 @SpringBootApplication
 public class EjercicioApplication {//implements CommandLineRunner{
-
+						
     @Autowired
     UserRepository userRepository;
 	public static void main(String[] args) {
 		SpringApplication.run(EjercicioApplication.class, args);
 	}
 	
+	// Uncomment below code to populate database (2)
 /**
     @Override
     public void run(String... args) throws Exception {
-        System.err.println(new Date());
         Faker faker = new Faker();
         List<UserEntity> list = new ArrayList();
-        for (int iteration=0; iteration <=100; iteration++) {
-            for (int i=1; i <= 10000; i++) {
+        for (int iteration=0; iteration <=4; iteration++) {
+            System.err.println(new Date());
+
+            for (int i=1; i <= 300000; i++) {
                 UserEntity userEntity = new UserEntity();
                 userEntity.setName(faker.name().firstName());
                 userEntity.setLastName(faker.name().lastName());
@@ -53,10 +55,10 @@ public class EjercicioApplication {//implements CommandLineRunner{
                 userEntity.setCreatedAt(new Date());
                 list.add(userEntity);
             }        
-            userRepository.saveAll(list);            
+            userRepository.saveAll(list);
+            list.clear();
         }
 
-        System.err.println(new Date());
     }
 
 **/
