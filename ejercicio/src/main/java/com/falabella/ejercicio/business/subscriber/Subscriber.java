@@ -37,8 +37,7 @@ public class Subscriber {
 	   }
 	   @ServiceActivator(inputChannel = "myInputChannel")
 	   public void messageReceiver(String payload) throws IOException {
-	      System.out.println(payload);
-	     ObjectMapper mapper = new ObjectMapper();
+   	      ObjectMapper mapper = new ObjectMapper();
 	      JsonNode node = mapper.readTree(payload);
 	      UserDTO userDTO = new UserDTO();
 	      userDTO.setAddress(node.get("address").asText());
@@ -47,8 +46,6 @@ public class Subscriber {
 	      userDTO.setLastName(node.get("lastName").asText());
 	      userDTO.setName(node.get("name").asText());
 	      userDTO.setPhoneNumber(node.get("phoneNumber").asText());
-	      System.out.println(node.get("address").asText());
-	      System.out.println("aqui se ejecuto");
 	      this.pubSubService.postMessageToApi(userDTO);
 	      /**
 	      * 
