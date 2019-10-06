@@ -15,11 +15,9 @@ import org.junit.runners.MethodSorters;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.web.server.LocalServerPort;
-import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -37,36 +35,33 @@ public class UserControllerTest {
 	@LocalServerPort
 	private int port;
 	TestRestTemplate restTemplate = new TestRestTemplate();
-        HttpHeaders headers = new HttpHeaders();
+    HttpHeaders headers = new HttpHeaders();
         
-	@Test
-	public void testAcreateUserRightFields() throws Exception {
-		HttpEntity<UserDTO> entity = new HttpEntity<>(createUserDTO(), headers);
-		ResponseEntity<String> response = createResponseEntity("/users");
-                assertTrue("Body responses contains Created",response.getBody().contains("Created"));
-                assertTrue("Status code is 201", response.getStatusCodeValue() == 201);
-	}
-  	@Test
-	public void testBcreateExistingUser() throws Exception {
-		HttpEntity<UserDTO> entity = new HttpEntity<>(createUserDTO(), headers);
-		ResponseEntity<String> response = createResponseEntity("/users");
-                assertTrue("Body responses contains Bad Request",response.getBody().contains("Bad Request"));
-                assertTrue("Status code is 400", response.getStatusCodeValue() == 400);
-	}      
+		@Test
+		public void testAcreateUserRightFields() throws Exception {
+			ResponseEntity<String> response = createResponseEntity("/v1/users", createUserDTO());
+	        assertTrue("Body responses contains Created",response.getBody().contains("Created"));
+	        assertTrue("Status code is 201", response.getStatusCodeValue() == 201);
+		}
+	  	@Test
+		public void testBcreateExistingUser() throws Exception {
+			ResponseEntity<String> response = createResponseEntity("/v1/users", createUserDTO());
+	        assertTrue("Body responses contains Bad Request",response.getBody().contains("Bad Request"));
+	        assertTrue("Status code is 400", response.getStatusCodeValue() == 400);
+		}      
         @Test
         public void testCcreateUserWithoutFullFields() throws Exception {
-            	HttpEntity<UserDTO> entity = new HttpEntity<>(createUncompleteUserDTO(), headers);
-		ResponseEntity<String> response = createResponseEntity("/users");
-		assertTrue("Body responses contains Bad Request",response.getBody().contains("Bad Request"));
-                assertTrue("Status code is 400", response.getStatusCodeValue() == 400);
+			ResponseEntity<String> response = createResponseEntity("/v1/users", createUncompleteUserDTO());
+			assertTrue("Body responses contains Bad Request",response.getBody().contains("Bad Request"));
+	        assertTrue("Status code is 400", response.getStatusCodeValue() == 400);
         }
 
         private String createURLWithPort(String uri) {
 		return "http://localhost:" + port + uri;
 	}
 
-        private ResponseEntity<String> createResponseEntity(String uri) {
-            HttpEntity<UserDTO> entity = new HttpEntity<UserDTO>(createUserDTO(), headers);
+        private ResponseEntity<String> createResponseEntity(String uri, UserDTO userDTO) {
+            HttpEntity<UserDTO> entity = new HttpEntity<UserDTO>(userDTO, headers);
             ResponseEntity<String> response = restTemplate.exchange(
 				createURLWithPort(uri),
 				HttpMethod.POST, entity, String.class);

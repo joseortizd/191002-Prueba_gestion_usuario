@@ -7,7 +7,9 @@ package com.falabella.ejercicio.business.util;
 
 import com.falabella.ejercicio.client.dto.UserDTO;
 import com.falabella.ejercicio.data.entity.UserEntity;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  *
@@ -27,5 +29,26 @@ public class ConverterUser {
         userEntity.setPhoneNumber(userDTO.getPhoneNumber());
         userEntity.setStatus(true);
         return userEntity;
+    }
+    
+    public static UserDTO userEntityToDTO (UserEntity userEntity) {
+        UserDTO userDTO = new UserDTO();
+        userDTO.setStatus(userEntity.getStatus());
+        userDTO.setName(userEntity.getName());
+        userDTO.setLastName(userEntity.getLastName());
+        userDTO.setAddress(userEntity.getAddress());
+        userDTO.setDocument(userEntity.getDocument());
+        userDTO.setEmail(userEntity.getEmail());
+        userDTO.setPhoneNumber(userEntity.getPhoneNumber());
+        userDTO.setCreatedAt(userEntity.getCreatedAt());
+        return userDTO;
+    }
+    
+    public static List<UserDTO> userEntityToDTOList(List<UserEntity> usersEntities) {
+        List<UserDTO> usersDTO = new ArrayList();
+        for (UserEntity userEntity : usersEntities) {
+            usersDTO.add(userEntityToDTO(userEntity));
+        }
+        return usersDTO;
     }
 }

@@ -86,5 +86,19 @@ public class UserDTO implements Serializable {
     public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
     }
+
+    public UserDTO() {
+    }
+
+    public UserDTO(String name, String lastName, String phoneNumber, String address, String email, String document, Boolean status, Date createdAt) {
+        this.name = name;
+        this.lastName = lastName;
+        this.phoneNumber = phoneNumber;
+        this.address = address;
+        this.email = email;
+        this.document = document;
+        this.status = status;
+        this.createdAt = createdAt;
+    }
     
 }
