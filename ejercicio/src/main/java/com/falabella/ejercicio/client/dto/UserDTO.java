@@ -14,7 +14,11 @@ import java.util.Date;
  */
 public class UserDTO implements Serializable {
     
-    String name;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	String name;
     String lastName;
     String phoneNumber;
     String address;

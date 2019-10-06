@@ -13,7 +13,11 @@ import java.io.Serializable;
  */
 public class ApiResponseDTO implements Serializable{
     
-    private String message;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private String message;
     private Object data;
 
     public String getMessage() {

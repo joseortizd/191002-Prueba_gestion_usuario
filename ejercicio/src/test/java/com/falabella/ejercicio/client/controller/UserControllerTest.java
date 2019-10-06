@@ -57,8 +57,8 @@ public class UserControllerTest {
         }
 
         private String createURLWithPort(String uri) {
-		return "http://localhost:" + port + uri;
-	}
+        	return "http://localhost:" + port + uri;
+        }
 
         private ResponseEntity<String> createResponseEntity(String uri, UserDTO userDTO) {
             HttpEntity<UserDTO> entity = new HttpEntity<UserDTO>(userDTO, headers);
