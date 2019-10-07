@@ -20,6 +20,7 @@ y
 
     - Dump20191006.zip (Ubicado en la siguiente carpeta compartida: https://drive.google.com/open?id=1ZgxMrV3lcBR8TPvQINPXGcSz2VbV5o5X ): Contiene data de prueba para la base de datos db_ejercicio con mas de un millón de registros para la prueba de latencia con esta cantidad de datos.
 
+
 ## LLenar la base de datos con la información de prueba
 
 - Para llenar la base de datos existen dos opciones, la primera es restaurar dentro **db_ejercicio** el Dump mencionado en la sección anterior.
