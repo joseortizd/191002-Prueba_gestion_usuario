@@ -52,7 +52,6 @@ public class UserController {
         }
         
         @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-        @ApiImplicitParams({@ApiImplicitParam(name = "Users", required = true, dataType = "string", paramType = "header")})
         @ResponseBody
         ResponseEntity<ApiResponseDTO> getAll() {
             ApiResponseDTO apiResponseDTO = new ApiResponseDTO();
